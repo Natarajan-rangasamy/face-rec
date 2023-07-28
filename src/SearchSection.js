@@ -5,7 +5,7 @@ function SearchFunc(){
 
     return(
         <div className="tc">
-            <h4 className="ma10 ">
+            <h4 className="ma10 green">
                 This Magic brain will detect the faces <br></br>in your pictures....give it a try..!
             </h4>
             <div className="box br3 shadow-5 grow pa3 center">

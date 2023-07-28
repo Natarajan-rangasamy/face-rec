@@ -6,10 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import Logos from './Logos';
 import Desc from './description';
 import SearchFunc from './SearchSection';
+import ParticlesBg from 'particles-bg';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ParticlesBg type='lines' bg={true} />
      <App />
     <Logos />
     <Desc />
