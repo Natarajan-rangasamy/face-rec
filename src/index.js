@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Logos from './Logos';
+import Desc from './description';
+import SearchFunc from './SearchSection';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <App />
+    <Logos />
+    <Desc />
+    <SearchFunc />
   </React.StrictMode>
 );
 
