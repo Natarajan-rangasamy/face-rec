@@ -19,6 +19,7 @@ input , button{
     display: flex;
     justify-content: center;
     width: 50%;
+    margin-bottom: 20px;
 }
 button{
     font-size: 80%;

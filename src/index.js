@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Logos from './Logos';
-import Desc from './description';
-import SearchFunc from './SearchSection';
-import ParticlesBg from 'particles-bg';
+import 'tachyons';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <ParticlesBg type='lines' bg={true} />
      <App />
-    <Logos />
-    <Desc />
-    <SearchFunc />
   </React.StrictMode>
 );
 
