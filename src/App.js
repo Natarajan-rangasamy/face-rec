@@ -7,12 +7,14 @@ import Desc from "./description";
 import SearchFunc from "./SearchSection";
 import ParticlesBg from "particles-bg";
 import Image from "./ImageBox";
+import SiginIn from "./signpage";
+import Registery from "./register";
 
 const clarifySet = (image_Url) => {
   const PAT = "f0fd577cbc49402eb7e5e947e6ca0627";
   const USER_ID = "harish_shh";
   const APP_ID = "face-app";
-  const MODEL_ID = "face-detection";
+  // const MODEL_ID = "face-detection";
   // const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
   const IMAGE_URL = image_Url;
 
@@ -52,8 +54,8 @@ class App extends React.Component {
       inputs: '',
       image_Url:'',
       box:{},
-      route:'home',
-      isSignedIn:false,
+      route:'signIn',
+      isSignedIn: false,
       user:{
         id:'',
         name:'',
@@ -67,10 +69,10 @@ class App extends React.Component {
   loadUser = (data) =>{
     this.setState({user: {
       id: data.id,
-      name:data.name,
-      email:data.email,
-      entries:data.entries,
-      joined:data.joined
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
     }})
   }
 
@@ -96,6 +98,13 @@ class App extends React.Component {
     this.setState({ inputs: event.target.value });
   }
 
+  onRouteChange = (route) =>{
+    if(route ==='signIn'){
+      this.setState({isSignedIn: false})
+    }
+    this.setState({route:route});
+   }
+
   onButtonSubmit = () => {
     this.setState({ image_Url: this.state.inputs });
     
@@ -104,37 +113,43 @@ class App extends React.Component {
      .then(response => response.json())
      .then(response => {
       console.log(response);
-      if(response){
-        fetch('http://localhost:3000/image',{
-          method:'put',
-          headers:{'content-type':'application/json'},
-          body:JSON.stringify({
-            id:this.state.user.id
-          })
-        })
-        .then(response => response.json())
-        .then(count => {
-          this.setState(Object.assign(this.state.user, { entries:count  }))
-        })
-      }
+      // if(response){
+      //   fetch('http://localhost:3000/image',{
+      //     method:'put',
+      //     headers:{'content-type':'application/json'},
+      //     body:JSON.stringify({
+      //       id:this.state.user.id
+      //     })
+      //   })
+      //   .then(response => response.json())
+      //   .then(count => {
+      //     this.setState(Object.assign(this.state.user, { entries:count  }))
+      //   })
+      // }
       this.displayFaceBox(this.calculateFaceLoc(response))
      })
      .catch(error => console.log('error', error));
-
-
   }
   render() {
+    
     return (
-      <div className="App">
-        <h3
-          className="link underline  pa3 f4 pointer  dib dim white"
-          style={{ display: "flex", justifyContent: "end" }}
-        >
-          Sign Out
-        </h3>
+      <div className="App" >
+        {
+        this.state.route === 'home'?
+          <div>
+              <h3 
+            onClick={(this.setState.route = () =>this.onRouteChange('signIn')) }
+              className="link underline navi  pa3 f4 pointer  dib dim white"
+              style={{ display: "flex", justifyContent: "end" }}
+            >
+              Sign Out
+            </h3>
+            </div>
+            : (<div>  </div>)
+            }
 
         <ParticlesBg
-          type="lines"
+          type="circles"
           bg={{
             position: "fixed",
             zIndex: -1,
@@ -142,6 +157,7 @@ class App extends React.Component {
             left: 0,
           }}
         />
+        {this.state.route === 'home'?<div>
         <Logos />
         <Desc />
         <SearchFunc
@@ -149,6 +165,15 @@ class App extends React.Component {
           onButtonSubmit={this.onButtonSubmit}
         />
         <Image box = {this.state.box} image_Url = {this.state.image_Url} />
+        </div>:
+        (
+          this.state.route ==='signIn'?
+          <SiginIn onRouteChange = {this.onRouteChange}/>:
+          <Registery onRouteChange = {this.onRouteChange}/>
+        )
+       
+        
+        }
       </div>
     );
   }

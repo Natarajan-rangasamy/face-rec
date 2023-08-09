@@ -9,7 +9,7 @@ function SearchFunc({ onSearchChange, onButtonSubmit }) {
         This Magic brain will detect the faces <br></br>in your pictures....give
         it a try..!
       </h4>
-      <div className="box br3 shadow-5 grow pa3 center">
+      <div className="box br3 shadow-5 pa3 center">
         <input
           className="pa2 br2 br-green bg-light-green w-70 "
           type="search"
