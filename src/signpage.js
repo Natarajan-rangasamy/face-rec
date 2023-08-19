@@ -25,7 +25,7 @@ class SiginIn extends React.Component {
       body: JSON.stringify({
         email: this.state.sel,
         password: this.state.spw,
-      }),
+      })
     })
       .then((response) => response.json())
       .then((user) => {
@@ -34,7 +34,7 @@ class SiginIn extends React.Component {
           this.props.onRouteChange("home");
         }
       })
-      .catch((err) => console.log("something wrong"));
+      // .catch((err) => console.log("something wrong"));
   };
 
   render() {
