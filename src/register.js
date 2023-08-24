@@ -24,7 +24,7 @@ class Registery extends React.Component {
   };
 
   onSubmitInfo = () => {
-    fetch("http://localhost:3000/register", {
+    fetch("https://face-back.onrender.com/register", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
